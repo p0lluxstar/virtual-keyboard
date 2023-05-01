@@ -2,8 +2,9 @@ const outputTextarea = document.getElementById('outputText');
 outputTextarea.focus();
 outputTextarea.value.toLowerCase();
 
-let keyboardEnLower = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'backspace', 'tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'backslash', 'capslock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'enter', 'shiftl', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'shiftr', 'top', 'ctrl', 'win', 'alt', 'spacebar', 'alt', 'win', 'ctrl', 'left', 'down', 'right', ];
-let keyboardEnUpper = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'backspace', 'tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', 'backslash', 'capslock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';', "'", 'enter', 'shiftl', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/', 'shiftr', 'top', 'ctrl', 'win', 'alt', 'spacebar', 'alt', 'win', 'ctrl', 'left', 'down', 'right', ];
+let keyboardEnLower = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'backspace', 'tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'backslash', 'capslock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'enter', 'shiftl', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'shiftr', 'up', 'ctrl', 'win', 'alt', ' ', 'alt', 'win', 'ctrl', 'left', 'down', 'right', ];
+let keyboardEnUpper = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'backspace', 'tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', 'backslash', 'capslock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';', "'", 'enter', 'shiftl', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/', 'shiftr', 'up', 'ctrl', 'win', 'alt', ' ', 'alt', 'win', 'ctrl', 'left', 'down', 'right', ];
+let keyboardRuLower = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'backspace', 'tab', 'й', 'ц', 'у', 'к', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'backslash', 'capslock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'enter', 'shiftl', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'shiftr', 'up', 'ctrl', 'win', 'alt', ' ', 'alt', 'win', 'ctrl', 'left', 'down', 'right', ];
 
 //создание первоначальной клавиатуры
 function creatKeyBoard(arrSymbol){
@@ -68,17 +69,17 @@ function addClassFnButton(arg){
             e.innerHTML = 'Win';
             e.classList.add('win');
         }
-        if (e.getAttribute('data') === 'spacebar'){
-            e.innerHTML = '';
+        if (e.getAttribute('data') === ' '){
+            e.innerHTML = ' ';
             e.classList.add('spacebar');
         }
         if (e.getAttribute('data') === 'alt'){
             e.innerHTML = 'Alt';
             e.classList.add('alt');
         }
-        if (e.getAttribute('data') === 'top'){
+        if (e.getAttribute('data') === 'up'){
             e.innerHTML = '↑';
-            e.classList.add('top');
+            e.classList.add('up');
         }
         if (e.getAttribute('data') === 'left'){
             e.innerHTML = '←';
@@ -101,7 +102,7 @@ addClassFnButton();
 function addSybmoInTextarea(){
     document.querySelectorAll('.keyboard .key').forEach(function(e){
         e.addEventListener('click', () => {
-            if(e.innerHTML === 'Caps Lock' || e.innerHTML === 'Backspace' || e.innerHTML === 'Enter'){
+            if(e.innerHTML === 'Caps Lock' || e.innerHTML === 'Backspace' || e.innerHTML === 'Enter' || e.innerHTML === 'Tab'){
                return;
             } else {
                 outputTextarea.value += e.innerHTML; 
@@ -112,6 +113,16 @@ function addSybmoInTextarea(){
 }
 
 addSybmoInTextarea();
+
+/*tab*/
+function workTabClick(){
+    const tab = document.querySelector('.tab');
+    tab.addEventListener('click', () => {
+        outputTextarea.value += '  ';
+    })
+
+}
+workTabClick();
 
 /* caps lock */
 // отвечате за работу при клике мышкой
@@ -125,44 +136,65 @@ function workCapsLockClick(){
             addClassFnButton('active');
             addSybmoInTextarea();
             workCapsLockClick();
-            workCapsLockPress()
+            pressKey()
+            workBackspace();
+            workEnter();
+            workSpacebar();
+            workTabClick();
+
         }else {
             creatKeyBoard(keyboardEnLower);
             addClassFnButton();
             addSybmoInTextarea();
             workCapsLockClick();
-            workCapsLockPress()
+            pressKey()
+            workBackspace();
+            workEnter();
+            workSpacebar();
+            workTabClick();
         }
         
     });
 }
 workCapsLockClick();
 
-function workCapsLockPress(){
+/*Backspace*/
+function workBackspace(){
+    const backspace = document.querySelector('.backspace');
+    backspace.addEventListener('click', () => {
+        if(outputTextarea.value.length > 0){
+            let newTextarea = outputTextarea.value.slice(0, -1);
+            outputTextarea.value = newTextarea;
+        }
+    })
+}
+workBackspace();
+
+/*Enter*/
+function workEnter(){
+    const enter = document.querySelector('.enter');
+
+    enter.addEventListener('click', () => {
+        outputTextarea.value += '\n';
+    })
+}
+workEnter();
+
+/*key spacebar*/
+function workSpacebar(){
+    const spacebar = document.querySelector('.spacebar');
+
+    spacebar.addEventListener('click', () => {
+        outputTextarea.value += '';
+    })
+}
+workSpacebar();
+
+function pressKey(){
     const capsLock = document.querySelector('.capslock');
 
     document.addEventListener('keydown', function(e){
         outputTextarea.focus();
-
-       if (e.key === 'CapsLock'){
-            if(capsLock.classList.contains('no-active')){
-                capsLock.classList.add('active')
-                capsLock.classList.remove('no-active')
-                creatKeyBoard(keyboardEnUpper);
-                addClassFnButton('active');
-                addSybmoInTextarea();
-                workCapsLockClick();
-                workCapsLockPress()
-            }else{
-                capsLock.classList.remove('active')
-                capsLock.classList.add('no-active')
-                creatKeyBoard(keyboardEnLower);
-                addClassFnButton();
-                addSybmoInTextarea();
-                workCapsLockClick();
-                workCapsLockPress()
-            }
-       }
 
         document.querySelectorAll('.keyboard .key').forEach(el =>{
             if(e.key === el.innerHTML){
@@ -179,7 +211,93 @@ function workCapsLockPress(){
             })
         }
         setTimeout(delClassActive, 120)
+
+        if(e.key === 'Tab'){
+            e.preventDefault();
+            outputTextarea.value += '  ';
+        }
+
+       if (e.key === 'CapsLock'){
+            if(capsLock.classList.contains('no-active')){
+                capsLock.classList.add('active')
+                capsLock.classList.remove('no-active')
+                creatKeyBoard(keyboardEnUpper);
+                addClassFnButton('active');
+                addSybmoInTextarea();
+                workCapsLockClick();
+                pressKey();
+                workBackspace();
+                workEnter();
+                workSpacebar();
+                workTabClick();
+            }else{
+                capsLock.classList.remove('active')
+                capsLock.classList.add('no-active')
+                creatKeyBoard(keyboardEnLower);
+                addClassFnButton();
+                addSybmoInTextarea();
+                workCapsLockClick();
+                pressKey();
+                workBackspace();
+                workEnter();
+                workSpacebar();
+                workTabClick();
+            }
+       }
+
+       if (e.key === 'ArrowLeft'){
+            outputTextarea.value += '←';
+            document.querySelector('.left').classList.add('active')
+       }
+
+       if (e.key === 'ArrowUp'){
+            outputTextarea.value += '↑';
+            document.querySelector('.up').classList.add('active')
+        }
+
+        if (e.key === 'ArrowRight'){
+            outputTextarea.value += '→';
+            document.querySelector('.right').classList.add('active')
+        }
+
+        if (e.key === 'ArrowDown'){
+            outputTextarea.value += '↓';
+            document.querySelector('.down').classList.add('active')
+        }
+
     })
 }
 
-workCapsLockPress();
+pressKey();
+
+const ctrl = document.querySelector('.ctrl')
+
+document.addEventListener('keydown', (e) => {
+    if(e.key === 'Alt'){
+        e.preventDefault();
+        if(document.querySelector('.key').innerHTML === '`'){
+            ctrl.classList.add('ru')
+            creatKeyBoard(keyboardRuLower);
+            addClassFnButton();
+            addSybmoInTextarea();
+            workCapsLockClick();
+            pressKey();
+            workBackspace();
+            workEnter();
+            workSpacebar();
+            workTabClick();
+        } else {
+            ctrl.classList.add('ru')
+            creatKeyBoard(keyboardEnLower);
+            addClassFnButton();
+            addSybmoInTextarea();
+            workCapsLockClick();
+            pressKey();
+            workBackspace();
+            workEnter();
+            workSpacebar();
+            workTabClick();
+        }
+        
+    }
+})

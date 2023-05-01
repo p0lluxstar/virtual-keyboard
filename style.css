@@ -57,6 +57,8 @@ textarea{
     border: 2px solid #000000;
     border-radius: 3px;
     font-size: 2em;
+    line-height: 1em;
+    caret-color : transparent;
 }
 
 .backspace,

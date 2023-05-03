@@ -308,6 +308,7 @@ function pressKey(){
         arrKeyCode.forEach((arrE, index) => {
             if(arrE === e.keyCode){
                 if(!(e.keyCode === 8 
+                    || e.keyCode === 9
                     || e.keyCode === 20
                     || e.keyCode === 13
                     || e.keyCode === 16
@@ -357,28 +358,16 @@ function pressKey(){
             }
 
             changeInnerHtmlFnButton();
-
        }
 
-       if (e.key === 'ArrowLeft'){
-            outputTextarea.value += '←';
-            document.querySelector('.left').classList.add('active')
+       if(e.key === 'Enter'){
+            outputTextarea.value += '\n';
        }
 
-       if (e.key === 'ArrowUp'){
-            outputTextarea.value += '↑';
-            document.querySelector('.up').classList.add('active')
-        }
-
-        if (e.key === 'ArrowRight'){
-            outputTextarea.value += '→';
-            document.querySelector('.right').classList.add('active')
-        }
-
-        if (e.key === 'ArrowDown'){
-            outputTextarea.value += '↓';
-            document.querySelector('.down').classList.add('active')
-        }
+       if(e.key === 'Backspace'){
+            let newTextarea = outputTextarea.value.slice(0, -1);
+            outputTextarea.value = newTextarea;
+       }
 
     })
 }

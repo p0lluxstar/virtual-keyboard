@@ -294,26 +294,42 @@ function workAltClick(){
 workAltClick();
 
 //нажатия кнопок
+
+let arrKeyCode = [192, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187, 8, 9, 81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 219, 221, 220, 20, 65, 83, 68, 70, 71, 72, 74, 75, 76, 186, 222, 13, 16, 90, 88, 67, 86, 66, 78, 77, 188, 190, 191, 16, 38, 0, 17, 91, 18, 32, 18, 91, 17, 37, 40, 39]
+
+
 function pressKey(){
     const capsLock = document.querySelector('.capslock');
-
+    
     document.addEventListener('keydown', function(e){
+        e.preventDefault();
         outputTextarea.focus();
 
-        document.querySelectorAll('.keyboard .key').forEach(el =>{
-            if(e.key === el.innerHTML){
-                el.classList.add('active') 
+        arrKeyCode.forEach((arrE, index) => {
+            if(arrE === e.keyCode){
+                if(!(e.keyCode === 8 
+                    || e.keyCode === 20
+                    || e.keyCode === 13
+                    || e.keyCode === 16
+                    || e.keyCode === 17
+                    || e.keyCode === 91
+                    || e.keyCode === 18
+                    )){
+                    outputTextarea.value += document.querySelectorAll('.keyboard .key')[index].innerHTML
+                }
+                if(!(e.keyCode === 20 )){      
+                document.querySelectorAll('.keyboard .key')[index].classList.add('active')}
             }
         })
 
         function delClassActive(){
-            document.querySelectorAll('.keyboard .key').forEach(el =>{
-                if(!(el.innerHTML === 'Caps Lock')){
-                    el.classList.remove('active');
-                } 
+            document.querySelectorAll('.keyboard .key').forEach(function(e){
+                if(!(e.innerHTML === 'Caps Lock')){
+                    e.classList.remove('active');
+                }
             })
         }
-        setTimeout(delClassActive, 120)
+        setTimeout(delClassActive, 120);
 
         if(e.key === 'Tab'){
             e.preventDefault();
@@ -321,6 +337,7 @@ function pressKey(){
         }
 
        if (e.key === 'CapsLock'){
+        
             if(!capsLock.classList.contains('active') && document.querySelector('.key').innerHTML === '`'){
                 capsLock.classList.add('active')
                 updateInnerHtml(keyboardEnUpper);
@@ -370,6 +387,7 @@ pressKey();
 
 //alt кнопка
 document.addEventListener('keydown', (e) => {
+    const capsLock = document.querySelector('.capslock');
     if(e.key === 'Alt'){
         e.preventDefault();
         if(document.querySelector('.key').innerHTML === '`'){
@@ -382,6 +400,7 @@ document.addEventListener('keydown', (e) => {
             localStorage.setItem("languageKey", localStorageLanguage);
         }
         changeInnerHtmlFnButton();
+        capsLock.classList.remove('active');
     }
 })
 

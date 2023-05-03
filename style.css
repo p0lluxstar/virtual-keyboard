@@ -4,6 +4,11 @@
     padding: 0;
   }
   
+h1{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
 .keyboard {
     display: flex;
     flex-wrap: wrap;
@@ -11,6 +16,7 @@
     border: 2px solid #000000;
     padding: 5px;
     margin: 0 auto;
+    border-radius: 5px;
 }
 
 .key {
@@ -53,9 +59,9 @@
 
 textarea{
     width: 848px;
-    height: 100px;
+    height: 150px;
     border: 2px solid #000000;
-    border-radius: 3px;
+    border-radius: 5px;
     font-size: 2em;
     line-height: 1em;
     caret-color : transparent;

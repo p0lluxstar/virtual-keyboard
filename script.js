@@ -33,9 +33,9 @@ outputTextarea.focus();
 let keyboardEnLower = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'backspace', 'tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'backslash', 'capslock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'enter', 'shiftl', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'shiftr', 'up', '', 'ctrl', 'win', 'alt', 'spacebar', 'alt', 'win', 'ctrl', 'left', 'down', 'right', ];
 let keyboardEnUpper = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'backspace', 'tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', 'backslash', 'capslock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';', "'", 'enter', 'shiftl', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/', 'shiftr', 'up', '', 'ctrl', 'win', 'alt', 'spacebar', 'alt', 'win', 'ctrl', 'left', 'down', 'right', ];
 let keyboardEnUpperShift = ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', 'backspace', 'tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '{', '}', 'backslash', 'capslock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';', "'", 'enter', 'shiftl', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '?', 'shiftr', 'up', '', 'ctrl', 'win', 'alt', 'spacebar', 'alt', 'win', 'ctrl', 'left', 'down', 'right', ];
-let keyboardRuLower = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'backspace', 'tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', 'backslash', 'capslock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', "э", 'enter', 'shiftl', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '/', 'shiftr', 'up', '', 'ctrl', 'win', 'alt', 'spacebar', 'alt', 'win', 'ctrl', 'left', 'down', 'right', ];
+let keyboardRuLower = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'backspace', 'tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', 'backslash', 'capslock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', "э", 'enter', 'shiftl', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю', '.', 'shiftr', 'up', '', 'ctrl', 'win', 'alt', 'spacebar', 'alt', 'win', 'ctrl', 'left', 'down', 'right', ];
 let keyboardRuUpper = ['Ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'backspace', 'tab', 'Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х', 'Ъ', 'backslash', 'capslock', 'Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', "Э", 'enter', 'shiftl', 'Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', '.', 'shiftr', 'up', '', 'ctrl', 'win', 'alt', 'spacebar', 'alt', 'win', 'ctrl', 'left', 'down', 'right', ];
-let keyboardRuUpperShift = ['`', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', 'backspace', 'tab', 'Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х', 'Ъ', 'backslash', 'capslock', 'Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', "Э", 'enter', 'shiftl', 'Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', ',', 'shiftr', 'up', '', 'ctrl', 'win', 'alt', 'spacebar', 'alt', 'win', 'ctrl', 'left', 'down', 'right', ];
+let keyboardRuUpperShift = ['Ё', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', 'backspace', 'tab', 'Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х', 'Ъ', 'backslash', 'capslock', 'Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', "Э", 'enter', 'shiftl', 'Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю', ',', 'shiftr', 'up', '', 'ctrl', 'win', 'alt', 'spacebar', 'alt', 'win', 'ctrl', 'left', 'down', 'right', ];
 
 //создание первоначальной клавиатуры
 function creatKeyBoard(arrSymbol){
@@ -63,7 +63,7 @@ if(languageKey === 'en'){
     creatKeyBoard(keyboardEnLower)
 }
 
-// добавляем классы функциональным кнопкам
+// меняем inner функциональным кнопкам
 function changeInnerHtmlFnButton(){
 
     document.querySelectorAll('.key').forEach(function(e){
@@ -133,7 +133,8 @@ function addSybmoInTextarea(){
             || e.innerHTML === 'Tab' 
             || e.innerHTML === 'Alt' 
             || e.innerHTML === 'Shift'
-            || e.innerHTML === 'Ctrl'){
+            || e.innerHTML === 'Ctrl'
+            || e.innerHTML === 'Win'){
                return;
             } else {
                 outputTextarea.value += e.innerHTML; 
@@ -235,6 +236,7 @@ function workShiftLCLick(){
         }else {
             updateInnerHtml(keyboardRuUpperShift);
         }
+        document.querySelector('.capslock').classList.remove('active');
         changeInnerHtmlFnButton();
     })
 
@@ -245,7 +247,7 @@ function workShiftLCLick(){
         }else {
             updateInnerHtml(keyboardRuLower);
         }
-        
+        document.querySelector('.capslock').classList.remove('active');
         changeInnerHtmlFnButton();
     })
 }
@@ -272,24 +274,72 @@ function workSpacebarClick(){
 }
 workSpacebarClick();
 
+
+/*ctrl*/
+function workCtrlClick(){
+    console.log('aa')
+    const ctrl = document.querySelectorAll('.ctrl')
+
+    ctrl.forEach(e => {
+        e.addEventListener('click', () => {
+            if(e.classList.contains('active')){
+                ctrl.forEach(el => {
+                    el.classList.remove('active')
+                })  
+            }else {
+                ctrl.forEach(el => {
+                    el.classList.add('active')
+                })  
+            }
+        })
+    })
+    
+    document.addEventListener('click', (e) => {
+        if(!e.target.classList.contains('ctrl')){
+            ctrl.forEach(e => {
+                e.classList.remove('active')
+            }
+        )}
+    })
+  
+}
+workCtrlClick()
+
 /*Alt*/
 function workAltClick(){
-    const alt = document.querySelector('.alt');
+    const alt = document.querySelectorAll('.alt');
     const capsLock = document.querySelector('.capslock');
-    
-    alt.addEventListener('click', () => {
-        if(document.querySelector('.key').innerHTML === '`'){
-            updateInnerHtml(keyboardRuLower);
-            let localStorageLanguage = "ru";
-            localStorage.setItem("languageKey", localStorageLanguage);
-        } else {
-            let localStorageLanguage = "en";
-            localStorage.setItem("languageKey", localStorageLanguage);
-            updateInnerHtml(keyboardEnLower);
-        }
-        capsLock.classList.remove('active');
-        changeInnerHtmlFnButton();
+    const ctrl = document.querySelectorAll('.ctrl')
+
+    alt.forEach(e => {
+        e.addEventListener('click', () => {
+            let flag = ''
+            if(document.querySelector('.ctrl').classList.contains('active')){
+                flag += 'true'
+            }else {
+                flag += 'false'
+            }
+
+            console.log(flag)
+            
+            if(document.querySelector('.key').innerHTML === '`' && flag === 'true'){
+                updateInnerHtml(keyboardRuLower);
+                let localStorageLanguage = "ru";
+                localStorage.setItem("languageKey", localStorageLanguage);
+                capsLock.classList.remove('active');
+            } else if((document.querySelector('.key').innerHTML === 'ё' && flag === 'true')){
+                let localStorageLanguage = "en";
+                localStorage.setItem("languageKey", localStorageLanguage);
+                updateInnerHtml(keyboardEnLower);
+                capsLock.classList.remove('active');
+            }
+            changeInnerHtmlFnButton();
+            ctrl.forEach(e => [
+                e.classList.remove('active')
+            ])
+        })
     })
+    
 }
 workAltClick();
 
@@ -315,6 +365,7 @@ function pressKey(){
                     || e.keyCode === 17
                     || e.keyCode === 91
                     || e.keyCode === 18
+                    || e.keyCode === 91
                     )){
                     outputTextarea.value += document.querySelectorAll('.keyboard .key')[index].innerHTML
                 }
@@ -325,10 +376,12 @@ function pressKey(){
 
         function delClassActive(){
             document.querySelectorAll('.keyboard .key').forEach(function(e){
-                if(!(e.innerHTML === 'Caps Lock')){
+                if(!(e.innerHTML === 'Caps Lock' || e.innerHTML === 'Shift')){
                     e.classList.remove('active');
                 }
+                
             })
+            
         }
         setTimeout(delClassActive, 120);
 
@@ -369,30 +422,21 @@ function pressKey(){
             outputTextarea.value = newTextarea;
        }
 
+       if(e.key === 'Shift'){
+        if(document.querySelector('.key').innerHTML === '`' || document.querySelector('.key').innerHTML === '~'){
+            updateInnerHtml(keyboardEnUpperShift);
+        }else {
+            updateInnerHtml(keyboardRuUpperShift);
+        }
+        document.querySelector('.capslock').classList.remove('active');
+        changeInnerHtmlFnButton();
+       }
     })
 }
 
 pressKey();
 
-//alt кнопка
-document.addEventListener('keydown', (e) => {
-    const capsLock = document.querySelector('.capslock');
-    if(e.key === 'Alt'){
-        e.preventDefault();
-        if(document.querySelector('.key').innerHTML === '`'){
-            updateInnerHtml(keyboardRuLower);
-            let localStorageLanguage = "ru";
-            localStorage.setItem("languageKey", localStorageLanguage);
-        } else {
-            updateInnerHtml(keyboardEnLower);
-            let localStorageLanguage = "en";
-            localStorage.setItem("languageKey", localStorageLanguage);
-        }
-        changeInnerHtmlFnButton();
-        capsLock.classList.remove('active');
-    }
-})
-
+// при нажатии на ctrl добавляется класс
 document.addEventListener('keydown', (e) => {
     if(e.key === 'Control'){
         e.preventDefault();
@@ -401,3 +445,87 @@ document.addEventListener('keydown', (e) => {
         })
     }
 })
+
+//переключение языка
+function runOnKeys(func, ...keys) {
+    let set = new Set
+
+    document.addEventListener('keydown', onKeyDown)
+    document.addEventListener('keyup', onKeyUp)
+
+    function onKeyDown(event) {
+        keys.forEach( (key) => {
+            if (event.code === key) set.add(key)
+        } )
+
+        if (keys.length === set.size) func()
+    }
+
+    function onKeyUp() {
+        set.clear()
+    }
+}
+
+  runOnKeys(
+    () => uploadKeyboard(),
+    "ControlLeft",
+    "AltLeft"
+  );
+
+  function runOnKeys2(func, ...keys) {
+    let set = new Set
+
+    document.addEventListener('keydown', onKeyDown)
+    document.addEventListener('keyup', onKeyUp)
+
+    function onKeyDown(event) {
+        keys.forEach( (key) => {
+            if (event.code === key) set.add(key)
+        } )
+
+        if (keys.length === set.size) func()
+    }
+
+    function onKeyUp() {
+        set.clear()
+    }
+}
+
+  runOnKeys2(
+    () => uploadKeyboard(),
+    "ControlRight",
+    "AltRight"
+  );
+
+// для переключения языка по клавишам
+  function uploadKeyboard(){
+    const capsLock = document.querySelector('.capslock');
+    if(document.querySelector('.key').innerHTML === '`'){
+        updateInnerHtml(keyboardRuLower);
+        let localStorageLanguage = "ru";
+        localStorage.setItem("languageKey", localStorageLanguage);
+    } else {
+        updateInnerHtml(keyboardEnLower);
+        let localStorageLanguage = "en";
+        localStorage.setItem("languageKey", localStorageLanguage);
+    }
+    changeInnerHtmlFnButton();
+    capsLock.classList.remove('active');
+  }
+
+  // срабатывает после того как отпущена кнопку shift
+  document.addEventListener('keyup', function (e) {
+    if(e.key === 'Shift'){
+        
+        document.querySelector('.shiftl').classList.remove('active')
+        document.querySelector('.shiftr').classList.remove('active')
+
+        if(document.querySelector('.key').innerHTML === '`' || document.querySelector('.key').innerHTML === '~'){
+            updateInnerHtml(keyboardEnLower);
+        }else {
+            updateInnerHtml(keyboardRuLower);
+        }
+        changeInnerHtmlFnButton();
+    }
+ 
+  })

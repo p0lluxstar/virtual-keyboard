@@ -3,10 +3,27 @@
     margin: 0;
     padding: 0;
   }
+
+body {
+    font-family: "Source Sans Pro", sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('/img/bg2.jpg');
+    /* background-image: url('/img/bg2.jpg'); */
+    background-size: cover;  /* Масштабирование на весь экран */
+    background-position: center; /* Центрирование */
+    background-repeat: no-repeat; /* Отключаем повтор */
+    background-attachment: fixed; /* Фон остаётся на месте при прокрутке */
+}
   
 h1{
     margin-top: 15px;
     margin-bottom: 15px;
+    color: #dee1ff;
+    text-shadow: 
+        -2px -2px 3px rgba(0, 0, 0, 0.8),  
+         2px -2px 3px rgba(0, 0, 0, 0.8),
+        -2px  2px 3px rgba(0, 0, 0, 0.8),
+         2px  2px 3px rgba(0, 0, 0, 0.8)
 }
 
 .keyboard {
@@ -17,6 +34,8 @@ h1{
     padding: 5px;
     margin: 0 auto;
     border-radius: 5px;
+    /* background: #586a80; */
+    background-color: #404053;
 }
 
 .key {
@@ -24,24 +43,27 @@ h1{
     height: 50px;
     border: 1px solid #000000;
     margin: 3px;
-    padding: 3px;
+    padding-left: 5px;
     border-radius: 3px;
+    background: #000000;
+    color: #fff;
+    font-size: 18px;
 }
 
 .key:hover{
-    background: #dddddd;
+    opacity: 0.7;
 }
 
 .key:active{
-    background: greenyellow;
+    background: #353535;
 }
 
 .active:hover{
-    background: greenyellow;
+    background: #353535;
 }
 
 .active{
-    background: greenyellow;
+    background: #353535;
 }
 
 .title{
@@ -59,12 +81,15 @@ h1{
 
 textarea{
     width: 848px;
-    height: 150px;
-    border: 2px solid #000000;
+    height: 200px;
+    border: 3px solid #000000;
     border-radius: 5px;
     font-size: 2em;
     line-height: 1em;
-    caret-color : transparent;
+    resize: none; 
+    padding: 10px;
+    background: #dee1ff;
+    outline: none;
 }
 
 .backspace,
@@ -75,6 +100,8 @@ textarea{
 
 .capslock{
     width: 70px;
+    line-height: 1em;
+    padding-top: 2px;
 }
 
 .enter{
@@ -89,4 +116,10 @@ textarea{
     margin-top: 20px;
     text-align: center;
     font-size: 2em;
+    color: #dee1ff;
+    text-shadow: 
+        -2px -2px 3px rgba(0, 0, 0, 0.8),  
+         2px -2px 3px rgba(0, 0, 0, 0.8),
+        -2px  2px 3px rgba(0, 0, 0, 0.8),
+         2px  2px 3px rgba(0, 0, 0, 0.8)
 }

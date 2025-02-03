@@ -2,7 +2,7 @@ function initHtml(){
     const divTitle = document.createElement('div');
     divTitle.classList.add('title');
     const elH1 = document.createElement('h1');
-    elH1.innerHTML = 'RSS Виртуальная клавиатура';
+    elH1.innerHTML = 'Виртуальная клавиатура';
     divTitle.appendChild(elH1);
     
     const divBlockText = document.createElement('div');
@@ -30,6 +30,12 @@ initHtml();
 const outputTextarea = document.getElementById('outputText');
 outputTextarea.focus();
 
+let numCurrentСhar = 0;
+
+outputTextarea.addEventListener("click", () => {
+    numCurrentСhar = outputTextarea.selectionStart;
+});
+
 let keyboardEnLower = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'backspace', 'tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'backslash', 'capslock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'enter', 'shiftl', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 'shiftr', 'up', '', 'ctrl', 'win', 'alt', 'spacebar', 'alt', 'win', 'ctrl', 'left', 'down', 'right', ];
 let keyboardEnUpper = ['`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'backspace', 'tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', 'backslash', 'capslock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';', "'", 'enter', 'shiftl', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '/', 'shiftr', 'up', '', 'ctrl', 'win', 'alt', 'spacebar', 'alt', 'win', 'ctrl', 'left', 'down', 'right', ];
 let keyboardEnUpperShift = ['~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', 'backspace', 'tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '{', '}', 'backslash', 'capslock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';', "'", 'enter', 'shiftl', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.', '?', 'shiftr', 'up', '', 'ctrl', 'win', 'alt', 'spacebar', 'alt', 'win', 'ctrl', 'left', 'down', 'right', ];
@@ -47,9 +53,7 @@ function creatKeyBoard(arrSymbol){
             out += `<div class="key" data="${arrSymbol[i]}">${arrSymbol[i]}</div>`;
         }
     }
-
     document.querySelector('.keyboard').innerHTML = out;
-    
 }
 
 //сохранение выбранного языка после обновления страницы, по умолчанию загружается en
@@ -137,23 +141,32 @@ function addSybmoInTextarea(){
             || e.innerHTML === 'Win'){
                return;
             } else {
-                outputTextarea.value += e.innerHTML; 
+                getNumCurrentСhar(e.innerHTML)
+                // const start = outputTextarea.value.slice(0, currentСhar);
+                // const end = outputTextarea.value.slice(currentСhar, outputTextarea.value.length)
+                // outputTextarea.value = `${start}${e.innerHTML}${end}`; 
+                // outputTextarea.setSelectionRange(currentСhar +1 , currentСhar + 1);
+                // currentСhar++
+                // outputTextarea.value += e.innerHTML; 
             }
         }) 
     });
-    
 }
-
 addSybmoInTextarea();
 
 /*tab*/
 function workTabClick(){
     const tab = document.querySelector('.tab');
     tab.addEventListener('click', () => {
-        outputTextarea.value += '    ';
+        const start = outputTextarea.value.slice(0, numCurrentСhar);
+        const end = outputTextarea.value.slice(numCurrentСhar, outputTextarea.value.length)
+        outputTextarea.value = `${start}${'    '}${end}`; 
+        outputTextarea.setSelectionRange(numCurrentСhar +4 , numCurrentСhar + 4);
+        numCurrentСhar++
+        numCurrentСhar += 3;
     })
-
 }
+
 workTabClick();
 
 /* caps lock */
@@ -179,10 +192,10 @@ function workCapsLockClick(){
             updateInnerHtml(keyboardRuLower);
             capsLock.classList.add('active');
         }
-
         changeInnerHtmlFnButton();
-        
+        outputTextarea.focus();
     });
+
 }
 workCapsLockClick();
 
@@ -190,10 +203,14 @@ workCapsLockClick();
 function workBackspaceClick(){
     const backspace = document.querySelector('.backspace');
     backspace.addEventListener('click', () => {
-        if(outputTextarea.value.length > 0){
-            let newTextarea = outputTextarea.value.slice(0, -1);
-            outputTextarea.value = newTextarea;
+        if(outputTextarea.value.length > 0 && numCurrentСhar > 0){
+            // let newTextarea = outputTextarea.value.slice(0, -1);
+            numCurrentСhar--
+            outputTextarea.value = outputTextarea.value.slice(0, numCurrentСhar) + outputTextarea.value.slice(numCurrentСhar + 1);
+            outputTextarea.setSelectionRange(numCurrentСhar, numCurrentСhar);
         }
+
+        outputTextarea.focus();
     })
 }
 workBackspaceClick();
@@ -210,6 +227,7 @@ function workShiftRCLick(){
             updateInnerHtml(keyboardRuUpperShift);
         }
         changeInnerHtmlFnButton();
+        outputTextarea.focus();
     })
 
     shiftr.addEventListener('mouseup', () => {
@@ -219,8 +237,8 @@ function workShiftRCLick(){
         }else {
             updateInnerHtml(keyboardRuLower);
         }
-        
         changeInnerHtmlFnButton();
+        outputTextarea.focus();
     })
 }
 
@@ -238,6 +256,7 @@ function workShiftLCLick(){
         }
         document.querySelector('.capslock').classList.remove('active');
         changeInnerHtmlFnButton();
+        outputTextarea.focus();
     })
 
     shiftl.addEventListener('mouseup', () => {
@@ -249,6 +268,7 @@ function workShiftLCLick(){
         }
         document.querySelector('.capslock').classList.remove('active');
         changeInnerHtmlFnButton();
+        outputTextarea.focus();
     })
 }
 
@@ -259,7 +279,9 @@ function workEnterClick(){
     const enter = document.querySelector('.enter');
 
     enter.addEventListener('click', () => {
-        outputTextarea.value += '\n';
+        getNumCurrentСhar('\n')
+        // outputTextarea.value += '\n';
+        outputTextarea.focus();
     })
 }
 workEnterClick();
@@ -270,14 +292,13 @@ function workSpacebarClick(){
 
     spacebar.addEventListener('click', () => {
         outputTextarea.value += '';
+        outputTextarea.focus();
     })
 }
 workSpacebarClick();
 
-
 /*ctrl*/
 function workCtrlClick(){
-    console.log('aa')
     const ctrl = document.querySelectorAll('.ctrl')
 
     ctrl.forEach(e => {
@@ -292,6 +313,8 @@ function workCtrlClick(){
                 })  
             }
         })
+
+        outputTextarea.focus();
     })
     
     document.addEventListener('click', (e) => {
@@ -300,6 +323,8 @@ function workCtrlClick(){
                 e.classList.remove('active')
             }
         )}
+
+        outputTextarea.focus();
     })
   
 }
@@ -319,8 +344,6 @@ function workAltClick(){
             }else {
                 flag += 'false'
             }
-
-            console.log(flag)
             
             if(document.querySelector('.key').innerHTML === '`' && flag === 'true'){
                 updateInnerHtml(keyboardRuLower);
@@ -337,6 +360,7 @@ function workAltClick(){
             ctrl.forEach(e => [
                 e.classList.remove('active')
             ])
+             outputTextarea.focus();
         })
     })
     
@@ -347,12 +371,12 @@ workAltClick();
 
 let arrKeyCode = [192, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187, 8, 9, 81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 219, 221, 220, 20, 65, 83, 68, 70, 71, 72, 74, 75, 76, 186, 222, 13, 16, 90, 88, 67, 86, 66, 78, 77, 188, 190, 191, 16, 38, 0, 17, 91, 18, 32, 18, 91, 17, 37, 40, 39]
 
-
 function pressKey(){
     const capsLock = document.querySelector('.capslock');
     
     document.addEventListener('keydown', function(e){
         e.preventDefault();
+        outputTextarea.scrollTop = outputTextarea.scrollHeight;
         outputTextarea.focus();
 
         arrKeyCode.forEach((arrE, index) => {
@@ -367,7 +391,13 @@ function pressKey(){
                     || e.keyCode === 18
                     || e.keyCode === 91
                     )){
-                    outputTextarea.value += document.querySelectorAll('.keyboard .key')[index].innerHTML
+                        getNumCurrentСhar(document.querySelectorAll('.keyboard .key')[index].innerHTML)
+                        // const start = outputTextarea.value.slice(0, currentСhar);
+                        // const end = outputTextarea.value.slice(currentСhar, outputTextarea.value.length)
+                        // outputTextarea.value = `${start}${document.querySelectorAll('.keyboard .key')[index].innerHTML}${end}`; 
+                        // outputTextarea.setSelectionRange(currentСhar +1 , currentСhar + 1);
+                        // currentСhar++
+                        //outputTextarea.value += document.querySelectorAll('.keyboard .key')[index].innerHTML
                 }
                 if(!(e.keyCode === 20 )){      
                 document.querySelectorAll('.keyboard .key')[index].classList.add('active')}
@@ -379,19 +409,20 @@ function pressKey(){
                 if(!(e.innerHTML === 'Caps Lock' || e.innerHTML === 'Shift')){
                     e.classList.remove('active');
                 }
-                
             })
-            
         }
         setTimeout(delClassActive, 120);
 
         if(e.key === 'Tab'){
-            e.preventDefault();
-            outputTextarea.value += '    ';
+            const start = outputTextarea.value.slice(0, numCurrentСhar);
+            const end = outputTextarea.value.slice(numCurrentСhar, outputTextarea.value.length)
+            outputTextarea.value = `${start}${'    '}${end}`; 
+            outputTextarea.setSelectionRange(numCurrentСhar +4 , numCurrentСhar + 4);
+            numCurrentСhar++
+            numCurrentСhar += 3;
         }
 
        if (e.key === 'CapsLock'){
-        
             if(!capsLock.classList.contains('active') && document.querySelector('.key').innerHTML === '`'){
                 capsLock.classList.add('active')
                 updateInnerHtml(keyboardEnUpper);
@@ -401,7 +432,6 @@ function pressKey(){
                 updateInnerHtml(keyboardEnLower);
   
             }else if(!capsLock.classList.contains('active') && document.querySelector('.key').innerHTML === 'ё'){
-                console.log(1)
                 capsLock.classList.add('active')
                 updateInnerHtml(keyboardRuUpper);
 
@@ -414,12 +444,19 @@ function pressKey(){
        }
 
        if(e.key === 'Enter'){
-            outputTextarea.value += '\n';
+            // outputTextarea.value += '\n';
+            getNumCurrentСhar('\n');
+            outputTextarea.scrollTop = outputTextarea.scrollHeight;
        }
 
        if(e.key === 'Backspace'){
-            let newTextarea = outputTextarea.value.slice(0, -1);
-            outputTextarea.value = newTextarea;
+            // let newTextarea = outputTextarea.value.slice(0, -1);
+            // outputTextarea.value = newTextarea;
+            if(outputTextarea.value.length > 0 && numCurrentСhar > 0){
+                numCurrentСhar--
+                outputTextarea.value = outputTextarea.value.slice(0, numCurrentСhar) + outputTextarea.value.slice(numCurrentСhar + 1);
+                outputTextarea.setSelectionRange(numCurrentСhar, numCurrentСhar);
+            }
        }
 
        if(e.key === 'Shift'){
@@ -527,5 +564,12 @@ function runOnKeys(func, ...keys) {
         }
         changeInnerHtmlFnButton();
     }
- 
   })
+
+  function getNumCurrentСhar (char){
+    const start = outputTextarea.value.slice(0, numCurrentСhar);
+    const end = outputTextarea.value.slice(numCurrentСhar, outputTextarea.value.length)
+    outputTextarea.value = `${start}${char}${end}`; 
+    outputTextarea.setSelectionRange(numCurrentСhar +1 , numCurrentСhar + 1);
+    numCurrentСhar++
+}
